@@ -1,4 +1,5 @@
-import { Heart, MagnifyingGlass, ShoppingCart } from "phosphor-react";
+import { Heart, MagnifyingGlass } from "phosphor-react";
+import CartWidget from "../CartWidget/CartWidget";
 
 export default function Header() {
   return (
@@ -35,9 +36,7 @@ export default function Header() {
           <Heart size={24} />
         </button>
 
-        <button className="ml-4">
-          <ShoppingCart size={24} />
-        </button>
+        <CartWidget />
       </div>
     </header>
   );
