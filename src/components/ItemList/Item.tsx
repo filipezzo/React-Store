@@ -10,7 +10,12 @@ function Item({ pictureUrl, price, title }: IProduct) {
       />
       <div className="flex justify-between mt-4">
         <h3>{title}</h3>
-        <strong>{price}</strong>
+        <strong>
+          {price?.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}
+        </strong>
       </div>
     </div>
   );
