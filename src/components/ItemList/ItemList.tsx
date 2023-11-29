@@ -6,8 +6,8 @@ interface Props {
 }
 function ItemList({ list }: Props) {
   return (
-    <div className=" h-full">
-      <div className="flex gap-4 p-4  max-w-4xl mx-auto ">
+    <div className=" h-full ">
+      <div className="flex flex-wrap justify-center gap-4 w-full   ">
         {list.map((item) => (
           <Item
             key={item.id}

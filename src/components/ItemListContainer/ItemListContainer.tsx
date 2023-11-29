@@ -8,8 +8,8 @@ interface Props {
 
 function ItemListContainer({ greeting, list }: Props) {
   return (
-    <section>
-      <h2 className="mt-10 mb-4 text-2xl text-blue-500 font-bold text-center">
+    <section className=" max-w-7xl mx-auto ">
+      <h2 className="mt-10 mb-4 text-2xl text-blue-400 font-bold text-center">
         {greeting}
       </h2>
 

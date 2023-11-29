@@ -1,23 +1,27 @@
-import { Heart, MagnifyingGlass } from "phosphor-react";
 import CartWidget from "../CartWidget/CartWidget";
+import { Link } from "react-router-dom";
+import logo from "../../assets/pngegg.png";
 
 export default function Header() {
   return (
-    <header className="p-10 border border-solid border-gray-500 w-full h-24 flex items-center">
+    <header className="p-10  h-24 flex items-center fixed top-0 left-0  container  mx-40 ">
       <h1 className="flex-1 ">
-        <a href="#">React Store</a>
+        <Link to="/">
+          <img
+            src={logo}
+            alt="store logo"
+            className="w-16 hover:animate-spin "
+          />
+        </Link>
       </h1>
 
       <nav className="flex-1 ">
         <ul className="flex gap-12 justify-center">
           <li>
-            <a href="#">Home</a>
+            <a href="#">Best Sellers</a>
           </li>
           <li>
-            <a href="#">Contact</a>
-          </li>
-          <li>
-            <a href="#">About</a>
+            <a href="#">Products</a>
           </li>
           <li>
             <a href="#">Sign Up</a>
@@ -25,17 +29,7 @@ export default function Header() {
         </ul>
       </nav>
 
-      <div className="flex-1 flex gap-2  ">
-        <div className="flex ml-auto bg-gray-500 px-1 py-2 rounded-lg ">
-          <input type="text" className="outline-none bg-transparent" />
-          <button type="submit">
-            <MagnifyingGlass size={24} />
-          </button>
-        </div>
-        <button className="ml-auto">
-          <Heart size={24} />
-        </button>
-
+      <div className="flex-1 flex gap-2 justify-end  ">
         <CartWidget />
       </div>
     </header>
