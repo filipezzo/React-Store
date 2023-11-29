@@ -3,29 +3,31 @@ import ItemCount from "../ItemCount/ItemCount";
 
 function ItemDetails({ details }: IProduct) {
   return (
-    <section className=" mt-8 max-w-4xl w-full  mx-auto">
-      <div className="flex max-w-xl border max-h-96  p-4  ">
-        <div className=" ">
-          <img
-            className="object-cover max-h-full w-4/5 rounded-md "
-            src={details.pictureUrl}
-            alt={`details of ${details.title} img`}
-          />
-        </div>
-
-        <div className="flex flex-col gap-8 ">
-          <h2 className="text-gray-500 text-2xl">{details.title}</h2>
-          <p>{details.description}</p>
-          <p className="text-blue-500 ">
-            {details.price?.toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-            })}
-          </p>
-          <ItemCount stock={5} initial={1} />
-        </div>
+    <>
+      <div className="max-w-[384px] max-h-[384px] w-full h-full rounded-md  border border-gray-700 overflow-hidden">
+        <img
+          className="w-96 h-96 object-cover "
+          src={details.pictureUrl}
+          alt={`details of ${details.title} img`}
+        />
       </div>
-    </section>
+      <div className="flex flex-col  justify-between">
+        <h2 className="uppercase text-2xl text-blue-500 font-bold ">
+          {details.title}
+        </h2>
+        <div className="gap-2">
+          <p>Details:</p>
+          <p>{details.description}</p>
+        </div>
+        <p>
+          {details.price?.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}
+        </p>
+        <ItemCount stock={5} initial={1} />
+      </div>
+    </>
   );
 }
 

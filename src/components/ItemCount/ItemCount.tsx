@@ -25,14 +25,14 @@ function ItemCount({ stock, initial }: Props) {
 
   const disableBtn = items === stock || stock === 0;
   const btnClass = disableBtn
-    ? "bg-gray-500  text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60"
+    ? "bg-gray-500  text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60 "
     : "bg-blue-500  text-white px-4 py-2 rounded-lg ";
 
   return (
     <div>
       {stock ? (
         <>
-          <div className="flex items-center gap-2  ">
+          <div className="flex items-center gap-2 mb-4   ">
             <button
               onClick={handleMinusClick}
               className="text-blue-500 text-2xl"

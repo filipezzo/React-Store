@@ -7,9 +7,9 @@ interface Props {
 
 function ItemDetailsContainer({ details }: Props) {
   return (
-    <div>
+    <section className="mt-40 max-w-7xl mx-auto flex gap-8 ">
       <ItemDetails details={details} />
-    </div>
+    </section>
   );
 }
 

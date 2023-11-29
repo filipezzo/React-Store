@@ -4,3 +4,7 @@ export interface IProduct {
   price: number;
   pictureUrl: string;
 }
+
+export interface IItem extends IProduct {
+  description: string;
+}

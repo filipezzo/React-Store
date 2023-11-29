@@ -1,5 +1,6 @@
 import Button from "../Button/Button";
 import jbl from "../../assets/ubl-2.png";
+import { Link } from "react-router-dom";
 function BannerCall() {
   return (
     <div className="max-w-7xl mx-auto p-6 rounded-md bg-blue-400 flex justify-between items-center relative my-32 h-[280px] ">
@@ -12,7 +13,9 @@ function BannerCall() {
       <div>
         <h2>UBL STREET </h2>
         <h1 className="text-6xl font-bold my-4 uppercase">Black Friday</h1>
-        <Button>Shop Now</Button>
+        <Link to={`/product/9`}>
+          <Button>Shop Now</Button>
+        </Link>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ function CartWidget() {
   return (
     <button className="ml-4 relative">
       <ShoppingCart size={24} />
-      <span className="absolute  -right-2 top-0">0</span>
+      <span className="absolute  -right-2 top-0"></span>
     </button>
   );
 }
