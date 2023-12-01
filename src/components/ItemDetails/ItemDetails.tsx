@@ -1,7 +1,18 @@
-import { IProduct } from "../../interface/interface";
+import { useState } from "react";
+import { IItem } from "../../interface/interface";
 import ItemCount from "../ItemCount/ItemCount";
 
-function ItemDetails({ details }: IProduct) {
+function ItemDetails({ details }: IItem) {
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+
+  const handleQuantityChange = (newQuantity: number) => {
+    setSelectedQuantity(newQuantity);
+  };
+  const handleAddToCart = () => {
+    console.log(details.title);
+    console.log(selectedQuantity * details.price);
+    console.log(details.id);
+  };
   return (
     <>
       <div className="max-w-[384px] max-h-[384px] w-full h-full rounded-md  border border-gray-700 overflow-hidden">
@@ -25,7 +36,13 @@ function ItemDetails({ details }: IProduct) {
             currency: "USD",
           })}
         </p>
-        <ItemCount stock={5} initial={1} />
+        <ItemCount
+          stock={details.stock}
+          initial={1}
+          onQuantityChange={handleQuantityChange}
+          onAddToCart={handleAddToCart}
+          details={details}
+        />
       </div>
     </>
   );

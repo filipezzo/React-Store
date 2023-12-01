@@ -7,4 +7,5 @@ export interface IProduct {
 
 export interface IItem extends IProduct {
   description: string;
+  stock: number;
 }

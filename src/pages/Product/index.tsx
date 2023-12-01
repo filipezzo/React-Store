@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ItemDetailsContainer from "../../components/ItemDetails/ItemDetailsContainer";
-import { IProduct } from "../../interface/interface";
+import { IItem } from "../../interface/interface";
 import Loading from "../../components/Loading/Loading";
 import { useParams } from "react-router-dom";
 import OtherItem from "../../components/OtherItem/OtherItem";
@@ -9,10 +9,10 @@ import product2 from "../../assets/ubl-2.png";
 
 function Product() {
   const [isLoading, setIsLoading] = useState(true);
-  const [productDetail, setProductDetail] = useState<IProduct[]>([]);
-  const [otherProducts, setOtherProducts] = useState<IProduct[]>([]);
+  const [productDetail, setProductDetail] = useState<IItem[]>([]);
+  const [otherProducts, setOtherProducts] = useState<IItem[]>([]);
   const { id } = useParams();
-  const getItem = () => {
+  const getItem = (): Promise<IItem[]> => {
     return new Promise((resolve) => {
       resolve([
         {
@@ -23,6 +23,7 @@ function Product() {
             "https://images.unsplash.com/photo-1612444530582-fc66183b16f7?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           description:
             "Immerse yourself in top-notch audio quality with our premium headset. Elevate your gaming or music experience with RGB LEDs, Instant Voice Assistant, and versatile connectivity options such as USB, AUX, Bluetooth v5.1, and FM. The Party Pal 50, featuring a Type-C interface, is the perfect choice to set the mood at any gathering.",
+          stock: 0,
         },
         {
           id: 2,
@@ -32,6 +33,7 @@ function Product() {
             "https://images.unsplash.com/photo-1613497645676-ea691063aa19?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           description:
             "Experience the pinnacle of audio excellence with our Beats headphones. Enjoy premium sound quality, customizable RGB LEDs, and seamless connectivity via USB, AUX, Bluetooth v5.1, and FM. The Party Pal 50, equipped with a Type-C interface, ensures you have everything you need to create the perfect atmosphere for your party.",
+          stock: 30,
         },
         {
           id: 3,
@@ -41,6 +43,7 @@ function Product() {
             "https://images.unsplash.com/photo-1503328427499-d92d1ac3d174?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           description:
             "Keep track of your fitness journey with the Fitbit Tracker. This sleek and powerful device offers advanced features to monitor your health and activities. With a stylish design and user-friendly interface, the Fitbit Tracker is your perfect companion on the path to wellness.",
+          stock: 50,
         },
         {
           id: 4,
@@ -50,6 +53,7 @@ function Product() {
             "https://images.unsplash.com/photo-1592832122594-c0c6bad718b1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           description:
             "Unleash the power of technology with the iPhone 14. Experience cutting-edge features, a stunning display, and unparalleled performance. Capture life's moments with the advanced camera system and stay connected with the latest innovations. The iPhone 14 is more than a smartphone; it's a lifestyle.",
+          stock: 20,
         },
         {
           id: 5,
@@ -59,6 +63,7 @@ function Product() {
             "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1638&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           description:
             "Capture breathtaking moments with the Sony Camera. Equipped with advanced features and cutting-edge technology, this camera ensures you never miss a shot. Whether you're a photography enthusiast or a casual shooter, the Sony Camera delivers exceptional image quality and versatility.",
+          stock: 22,
         },
         {
           id: 6,
@@ -68,6 +73,7 @@ function Product() {
             "https://images.unsplash.com/photo-1604171253006-20f7b199b5bc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           description:
             "Enhance your gaming experience with the Logitech Gaming Mouse. Designed for precision and comfort, this mouse delivers responsive control for gaming enthusiasts. With customizable features and a sleek design, the Logitech Gaming Mouse is your ultimate companion in the virtual world.",
+          stock: 12,
         },
         {
           id: 7,
@@ -77,6 +83,7 @@ function Product() {
             "https://images.unsplash.com/photo-1542393545-10f5cde2c810?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           description:
             "Experience unparalleled productivity with our high-performance notebook. Packed with advanced features, powerful hardware, and a sleek design, this notebook is ideal for work, creativity, and entertainment. Elevate your computing experience with the Notebook, your gateway to seamless multitasking and immersive content consumption.",
+          stock: 14,
         },
 
         {
@@ -86,6 +93,7 @@ function Product() {
           pictureUrl: product1,
           description:
             "Immerse yourself in the world of premium sound with UBL Wireless. These wireless headphones redefine your audio experience, providing crystal-clear sound quality and a comfortable, ergonomic design. With advanced Bluetooth technology, enjoy seamless connectivity and the freedom to move without the hassle of wires. Elevate your music and entertainment moments with UBL Wireless – where style meets performance.",
+          stock: 3,
         },
 
         {
@@ -95,6 +103,7 @@ function Product() {
           pictureUrl: product2,
           description:
             "Step into the urban beats with UBL Street headphones. Designed for those who appreciate style and performance, UBL Street delivers a powerful audio experience in a sleek, on-the-go design. Immerse yourself in your favorite tunes with clarity and depth. The foldable design and lightweight construction make UBL Street the perfect companion for your daily adventures. Elevate your street style with UBL Street headphones.",
+          stock: 6,
         },
       ]);
     });
@@ -110,7 +119,7 @@ function Product() {
           (item) => item.id.toString() !== id && item.id !== 8 && item.id !== 9
         );
         if (findItem) {
-          setProductDetail(findItem as IProduct[]);
+          setProductDetail(findItem);
           setOtherProducts(filteredOtherItem);
         }
       } catch (error) {

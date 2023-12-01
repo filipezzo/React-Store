@@ -1,12 +1,22 @@
 import { Minus, Plus } from "phosphor-react";
 import { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
+import { IItem } from "../../interface/interface";
 interface Props {
   stock: number;
   initial: number;
+  onQuantityChange: (newQuantity: number) => void;
+  onAddToCart: () => void;
+  details: IItem;
 }
 
-function ItemCount({ stock, initial }: Props) {
+function ItemCount({
+  stock,
+  onQuantityChange,
+  initial,
+  onAddToCart,
+  details,
+}: Props) {
   const [items, setItems] = useState(1);
 
   useEffect(() => {
@@ -17,16 +27,22 @@ function ItemCount({ stock, initial }: Props) {
 
   const handleMinusClick = () => {
     items > 1 && setItems((prev) => prev - 1);
+    onQuantityChange(items - 1);
   };
 
   const handlePlusClick = () => {
     items < stock && setItems((prev) => prev + 1);
+    onQuantityChange(items + 1);
   };
 
   const disableBtn = items === stock || stock === 0;
   const btnClass = disableBtn
     ? "bg-gray-500  text-white px-4 py-2 rounded-lg cursor-not-allowed opacity-60 "
     : "bg-blue-500  text-white px-4 py-2 rounded-lg ";
+
+  const handleClick = () => {
+    onAddToCart();
+  };
 
   return (
     <div>
@@ -47,17 +63,21 @@ function ItemCount({ stock, initial }: Props) {
               <Plus />
             </button>
           </div>
-          <button disabled={disableBtn} className={btnClass}>
-            Add {items} to cart
-          </button>
+          <Link to={{ pathname: "/cart", state: { details } }}>
+            <button
+              disabled={disableBtn}
+              className={btnClass}
+              onClick={handleClick}
+            >
+              Add {items} to cart
+            </button>
+          </Link>
         </>
       ) : (
         <button disabled={disableBtn} className={btnClass}>
           Apologies, currently out of stock! 😿
         </button>
       )}
-
-      {}
     </div>
   );
 }
