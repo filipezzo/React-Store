@@ -63,15 +63,14 @@ function ItemCount({
               <Plus />
             </button>
           </div>
-          <Link to={{ pathname: "/cart", state: { details } }}>
-            <button
-              disabled={disableBtn}
-              className={btnClass}
-              onClick={handleClick}
-            >
-              Add {items} to cart
-            </button>
-          </Link>
+
+          <button
+            disabled={disableBtn}
+            className={btnClass}
+            onClick={handleClick}
+          >
+            Add {items} to cart
+          </button>
         </>
       ) : (
         <button disabled={disableBtn} className={btnClass}>

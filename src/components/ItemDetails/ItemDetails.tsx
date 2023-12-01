@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { IItem } from "../../interface/interface";
 import ItemCount from "../ItemCount/ItemCount";
+import { useNavigate } from "react-router-dom";
 
 function ItemDetails({ details }: IItem) {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const nav = useNavigate();
 
   const handleQuantityChange = (newQuantity: number) => {
     setSelectedQuantity(newQuantity);
@@ -12,6 +14,7 @@ function ItemDetails({ details }: IItem) {
     console.log(details.title);
     console.log(selectedQuantity * details.price);
     console.log(details.id);
+    nav("/cart");
   };
   return (
     <>
