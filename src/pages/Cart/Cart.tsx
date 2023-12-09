@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import CartItem from "./CartItem";
 import { useCart } from "../../context/Context";
 import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const { removeFromCart, cart, setCart, removeAll } = useCart();
@@ -14,6 +15,10 @@ function Cart() {
       (acc, item) => acc + (item.quantity || 0) * item.price,
       0
     );
+  };
+
+  const sumQuantity = () => {
+    return cart.reduce((acc, item) => acc + item.quantity, 0);
   };
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "null");
@@ -30,9 +35,10 @@ function Cart() {
               <CartItem key={item.id} item={item} onRemoving={removeFromCart} />
             ))}
           </ul>
+          <h3>Quantity : {sumQuantity()}</h3>
           <div className="mb-4 flex justify-between">
             <strong>
-              Total:{" "}
+              Total:
               {sumTotal().toLocaleString("en", {
                 style: "currency",
                 currency: "usd",
@@ -42,8 +48,11 @@ function Cart() {
           </div>
         </>
       ) : (
-        <div className="container  mx-auto mt-40 h-[60vh] flex items-center justify-center">
-          Your cart is Empty 😐
+        <div className="container  mx-auto mt-40 h-[60vh] flex items-center justify-center flex-col gap-4">
+          <strong>Your cart is Empty 😐</strong>
+          <Link to="/product/8">
+            <Button>See Products</Button>
+          </Link>
         </div>
       )}
     </>
