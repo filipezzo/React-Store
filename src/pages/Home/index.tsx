@@ -3,11 +3,11 @@ import ItemListContainer from "../../components/ItemListContainer/ItemListContai
 import Banner from "../../components/Banner/Banner";
 import BannerCall from "../../components/Banner/BannerCall";
 import Loading from "../../components/Loading/Loading";
-import { IProduct } from "../../interface/interface";
+import { IItem } from "../../interface/interface";
 
 function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState<IItem[]>([]);
 
   const getListRepo = () => {
     return new Promise((resolve) => {
@@ -76,7 +76,7 @@ function Home() {
     const onMount = async () => {
       try {
         const response = await getListRepo();
-        setProducts(response as IProduct[]);
+        setProducts(response as IItem[]);
       } catch (error) {
         console.log(error);
       } finally {

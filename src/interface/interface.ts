@@ -1,11 +1,14 @@
 export interface IProduct {
+  details: IItem;
+  id: number;
+  title: string;
+}
+
+export interface IItem extends IProduct {
   id: number;
   title: string;
   price: number;
   pictureUrl: string;
-}
-
-export interface IItem extends IProduct {
-  description: string;
+  description?: string;
   stock: number;
 }

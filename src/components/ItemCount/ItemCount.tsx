@@ -1,22 +1,14 @@
 import { Minus, Plus } from "phosphor-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { IItem } from "../../interface/interface";
+
 interface Props {
   stock: number;
   initial: number;
   onQuantityChange: (newQuantity: number) => void;
   onAddToCart: () => void;
-  details: IItem;
 }
 
-function ItemCount({
-  stock,
-  onQuantityChange,
-  initial,
-  onAddToCart,
-  details,
-}: Props) {
+function ItemCount({ stock, onQuantityChange, initial, onAddToCart }: Props) {
   const [items, setItems] = useState(1);
 
   useEffect(() => {

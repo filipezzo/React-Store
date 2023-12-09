@@ -2,18 +2,25 @@ import { useState } from "react";
 import { IItem } from "../../interface/interface";
 import ItemCount from "../ItemCount/ItemCount";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/Context";
 
 function ItemDetails({ details }: IItem) {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const nav = useNavigate();
+  const { addToCart } = useCart();
 
   const handleQuantityChange = (newQuantity: number) => {
     setSelectedQuantity(newQuantity);
   };
   const handleAddToCart = () => {
-    console.log(details.title);
-    console.log(selectedQuantity * details.price);
-    console.log(details.id);
+    const item = {
+      id: details.id,
+      title: details.title,
+      img: details.pictureUrl,
+      price: selectedQuantity * details.price,
+      quantity: selectedQuantity,
+    };
+    addToCart(item);
     nav("/cart");
   };
   return (
@@ -44,7 +51,6 @@ function ItemDetails({ details }: IItem) {
           initial={1}
           onQuantityChange={handleQuantityChange}
           onAddToCart={handleAddToCart}
-          details={details}
         />
       </div>
     </>

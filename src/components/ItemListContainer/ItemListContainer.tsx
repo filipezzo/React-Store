@@ -1,9 +1,9 @@
-import { IProduct } from "../../interface/interface";
+import { IItem } from "../../interface/interface";
 import ItemList from "../ItemList/ItemList";
 
 interface Props {
   greeting: string;
-  list: IProduct[];
+  list: IItem[];
 }
 
 function ItemListContainer({ greeting, list }: Props) {

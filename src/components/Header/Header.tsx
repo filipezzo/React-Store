@@ -4,7 +4,7 @@ import logo from "../../assets/pngegg.png";
 
 export default function Header() {
   return (
-    <header className="p-10  h-24 flex items-center fixed top-0 left-0  container  mx-40 ">
+    <header className="p-10  h-24 flex items-center fixed top-0 left-0  container  mx-40 z-50  bg-zinc-950 opacity-50">
       <h1 className="flex-1 ">
         <Link to="/">
           <img
@@ -15,23 +15,9 @@ export default function Header() {
         </Link>
       </h1>
 
-      <nav className="flex-1 ">
-        <ul className="flex gap-12 justify-center">
-          <li>
-            <a href="#">Best Sellers</a>
-          </li>
-          <li>
-            <a href="#">Products</a>
-          </li>
-          <li>
-            <a href="#">Sign Up</a>
-          </li>
-        </ul>
-      </nav>
-
-      <div className="flex-1 flex gap-2 justify-end  ">
+      <Link to="/cart" className="flex-1 flex gap-2 justify-end  ">
         <CartWidget />
-      </div>
+      </Link>
     </header>
   );
 }
