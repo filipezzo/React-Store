@@ -1,12 +1,21 @@
 import { createContext, useContext, useState } from "react";
 import { IItem } from "../interface/interface";
 
-const cartContext = createContext({} as IItem);
+interface IContext {
+  cart: IItem[];
+  addToCart: (item: IItem) => void;
+  isItemInCart: (cart: IItem[], newItem: IItem) => boolean;
+  removeFromCart: (item: IItem) => void;
+  removeAll: () => void;
+  setCart: React.Dispatch<React.SetStateAction<IItem[]>>;
+}
+
+const cartContext = createContext({} as IContext);
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<IItem[]>([]);
 
-  const isItemInCart = (cart, newItem) => {
+  const isItemInCart = (cart: IItem[], newItem: IItem) => {
     return cart.some((item) => item.title === newItem.title);
   };
   const addToCart = (item: IItem) => {

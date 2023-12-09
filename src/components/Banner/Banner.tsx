@@ -1,4 +1,3 @@
-import React from "react";
 import banner from "../../assets/JBL_JR 310BT_Product Image_Hero_Skyblue.png";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";

@@ -9,6 +9,8 @@ export interface IItem extends IProduct {
   title: string;
   price: number;
   pictureUrl: string;
+  img?: string;
   description?: string;
   stock: number;
+  quantity?: number | undefined;
 }

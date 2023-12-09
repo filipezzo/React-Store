@@ -1,6 +1,11 @@
-import React from "react";
+import { IItem } from "../../interface/interface";
 
-function CartItem({ item, onRemoving }) {
+interface CartItemProps {
+  item: IItem;
+  onRemoving: (item: IItem) => void;
+}
+
+function CartItem({ item, onRemoving }: CartItemProps) {
   const handleClick = () => {
     onRemoving(item);
   };
@@ -18,7 +23,7 @@ function CartItem({ item, onRemoving }) {
           })}
         </strong>
         <p> Quantity : {item.quantity}</p>
-        <p>Subtotal: {item.price * item.quantity}</p>
+        <p>Subtotal: {item.price * item.quantity!}</p>
       </div>
       <button onClick={() => handleClick()}>Delete</button>
     </li>

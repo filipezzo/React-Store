@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CartItem from "./CartItem";
 import { useCart } from "../../context/Context";
 import Button from "../../components/Button/Button";
@@ -7,12 +7,16 @@ function Cart() {
   const { removeFromCart, cart, setCart, removeAll } = useCart();
   const handleClearCart = () => {
     removeAll();
+    localStorage.removeItem("cart");
   };
   const sumTotal = () => {
-    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    return cart.reduce(
+      (acc, item) => acc + (item.quantity || 0) * item.price,
+      0
+    );
   };
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "null");
     if (storedCart) {
       setCart(storedCart);
     }
