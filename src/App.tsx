@@ -6,19 +6,22 @@ import Footer from "./components/Footer/Footer";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart/Cart";
 import { CartProvider } from "./context/Context";
+import { FirebaseProvider } from "./context/FirebaseContext";
 
 function App() {
   return (
     <BrowserRouter>
-      <CartProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/cart/*" element={<Cart />} />
-        </Routes>
-        <Footer />
-      </CartProvider>
+      <FirebaseProvider>
+        <CartProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<Product />} />
+            <Route path="/cart/*" element={<Cart />} />
+          </Routes>
+          <Footer />
+        </CartProvider>
+      </FirebaseProvider>
     </BrowserRouter>
   );
 }
