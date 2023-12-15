@@ -3,9 +3,10 @@ import CartItem from "./CartItem";
 import { useCart } from "../../context/Context";
 import Button from "../../components/Button/Button";
 import { Link } from "react-router-dom";
-
+import { placeOrder } from "../../utils/placeOrder.js";
 function Cart() {
   const { removeFromCart, cart, setCart, removeAll } = useCart();
+
   const handleClearCart = () => {
     removeAll();
     localStorage.removeItem("cart");
@@ -19,6 +20,26 @@ function Cart() {
 
   const sumQuantity = () => {
     return cart.reduce((acc, item) => acc + item.quantity, 0);
+  };
+
+  const handleBuy = async () => {
+    try {
+      const staticBuyer = {
+        name: "filipe avanzzo",
+        phone: "123-456-0230",
+        email: "filipe@filipe.com",
+      };
+
+      const cartItems = cart;
+      const total = sumTotal();
+      await placeOrder(staticBuyer, cartItems, total);
+      alert("pedido confirmado");
+
+      removeAll();
+      localStorage.removeItem("cart");
+    } catch (error) {
+      console.error("erro");
+    }
   };
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "null");
@@ -44,7 +65,10 @@ function Cart() {
                 currency: "usd",
               })}
             </strong>
-            <Button onClick={handleClearCart}>Clear Cart</Button>
+            <div className="flex gap-4">
+              <Button onClick={handleClearCart}>Clear Cart</Button>
+              <Button onClick={handleBuy}>Buy</Button>
+            </div>
           </div>
         </>
       ) : (
